@@ -1,6 +1,6 @@
 use std::mem;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>,
@@ -85,6 +85,15 @@ impl<T: std::cmp::PartialEq + std::fmt::Debug> List<T> {
     }
     pub fn len(&self) -> usize {
         self.len
+    }
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+}
+
+impl<T: std::cmp::PartialEq + std::fmt::Debug> Default for List<T> {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

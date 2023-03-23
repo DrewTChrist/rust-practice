@@ -56,7 +56,7 @@ fn main() {
                 .args(["-c", format!("cat stuff/{}.txt", i).as_str()])
                 .output()
                 .unwrap();
-            if val.stdout.len() > 0 {
+            if !val.stdout.is_empty() {
                 collector_sender
                     .send(Message::Str(String::from_utf8(val.stdout).unwrap()))
                     .unwrap();
